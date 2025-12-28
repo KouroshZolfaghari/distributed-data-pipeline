@@ -1,10 +1,9 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder \
-    .appName("SimpleJob") \
+spark = (
+    SparkSession
+    .builder
+    .appName("DistributedDataPipeline")
+    .master("local[*]")
     .getOrCreate()
-
-df = spark.read.csv("data/sample.csv", header=True)
-print(df.count())
-
-spark.stop()
+)
